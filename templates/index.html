@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}MoviWeb – Users{% endblock %}
+
+{% block content %}
+  <h1>Welcome to MoviWeb</h1>
+  <p class="lead">Pick a user to see their favorite movies, or add a new user.</p>
+
+  <section class="card">
+    <h2>Users</h2>
+    {% if users %}
+      <ul class="user-list">
+        {% for user in users %}
+          <li>
+            <a href="{{ url_for('list_movies', user_id=user.id) }}">{{ user.name }}</a>
+            <span class="muted">{{ user.movies|length }} movie{{ '' if user.movies|length == 1 else 's' }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="muted">No users yet. Add the first one below.</p>
+    {% endif %}
+  </section>
+
+  <section class="card">
+    <h2>Add a user</h2>
+    <form action="{{ url_for('create_user') }}" method="POST" class="inline-form">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required maxlength="100" placeholder="e.g. Alice">
+      <button type="submit">Add user</button>
+    </form>
+  </section>
+{% endblock %}

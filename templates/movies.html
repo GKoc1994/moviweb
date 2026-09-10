@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}MoviWeb – {{ user.name }}{% endblock %}
+
+{% block content %}
+  <p><a href="{{ url_for('index') }}">← All users</a></p>
+  <h1>{{ user.name }}'s favorite movies</h1>
+
+  <section class="card">
+    <h2>Add a movie</h2>
+    <form action="{{ url_for('add_movie', user_id=user.id) }}" method="POST" class="inline-form">
+      <label for="title">Title</label>
+      <input type="text" id="title" name="title" required placeholder="e.g. Inception">
+      <label for="director">Director (optional)</label>
+      <input type="text" id="director" name="director">
+      <label for="year">Year (optional)</label>
+      <input type="number" id="year" name="year" min="1888" max="2100">
+      <button type="submit">Add movie</button>
+    </form>
+    <p class="muted small">Director, year and poster are loaded from OMDb when the title is found.</p>
+  </section>
+
+  {% if movies %}
+    <ul class="movie-grid">
+      {% for movie in movies %}
+        <li class="movie">
+          {% if movie.poster_url %}
+            <img src="{{ movie.poster_url }}" alt="Poster of {{ movie.name }}">
+          {% else %}
+            <div class="poster-placeholder">🎞️</div>
+          {% endif %}
+          <h3>{{ movie.name }}</h3>
+          <p class="muted">
+            {% if movie.director %}{{ movie.director }}{% endif %}
+            {% if movie.director and movie.year %} · {% endif %}
+            {% if movie.year %}{{ movie.year }}{% endif %}
+          </p>
+
+          <form action="{{ url_for('update_movie', user_id=user.id, movie_id=movie.id) }}" method="POST" class="stack-form">
+            <input type="text" name="title" value="{{ movie.name }}" required aria-label="New title for {{ movie.name }}">
+            <button type="submit">Update title</button>
+          </form>
+
+          <form action="{{ url_for('delete_movie', user_id=user.id, movie_id=movie.id) }}" method="POST">
+            <button type="submit" class="danger">Delete</button>
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="muted">{{ user.name }} has no favorite movies yet.</p>
+  {% endif %}
+{% endblock %}
