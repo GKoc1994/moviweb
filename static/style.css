@@ -1,0 +1,138 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: #f3f4f7;
+  color: #1c2230;
+  line-height: 1.5;
+}
+
+a { color: #3552c8; }
+
+.site-header {
+  background: #1c2230;
+  padding: 14px 24px;
+}
+
+.logo {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px;
+  display: grid;
+  gap: 20px;
+}
+
+h1, h2, h3 { margin: 0 0 8px; }
+
+.lead { margin: 0; color: #4c5566; }
+
+.card {
+  background: #fff;
+  border: 1px solid #dde1e8;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.center { text-align: center; }
+
+.muted { color: #6a7384; }
+.small { font-size: 0.85rem; }
+
+.flash {
+  margin: 0;
+  padding: 10px 14px;
+  border-radius: 8px;
+}
+.flash-success { background: #e1f3e8; color: #1d6b43; }
+.flash-error { background: #fbe4df; color: #9d2f1c; }
+.flash-info { background: #e6ecfa; color: #2b4291; }
+
+.user-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.user-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-top: 1px solid #eef0f4;
+}
+.user-list li:first-child { border-top: none; }
+
+.inline-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+
+input {
+  padding: 8px 10px;
+  border: 1px solid #c9ceda;
+  border-radius: 6px;
+  font: inherit;
+}
+
+button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #3552c8;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+button:hover { background: #2a43a8; }
+button.danger { background: #b83b26; }
+button.danger:hover { background: #962f1e; }
+
+.movie-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.movie {
+  background: #fff;
+  border: 1px solid #dde1e8;
+  border-radius: 10px;
+  padding: 14px;
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+
+.movie img,
+.poster-placeholder {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 6px;
+  background: #e8ebf1;
+}
+
+.poster-placeholder {
+  display: grid;
+  place-items: center;
+  font-size: 2.5rem;
+}
+
+.movie h3 { font-size: 1rem; margin: 0; }
+.movie p { margin: 0; }
+
+.stack-form {
+  display: grid;
+  gap: 6px;
+}
